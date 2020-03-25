@@ -1,26 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>HTML</title>
-  
-  <!-- HTML -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<html>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="p5.js"></script>
+    <script src="mth.js"></script>
+    <script src="walker.js"></script>
+    <script src="index.js"></script>
 </head>
+
 <body>
-<div ng-app="myApp" ng-controller="myController">
-  {{message}}
-</div>
-<script>
-  var ngApp = angular.module('myApp', []);
-  
-  ngApp.controller('myController', function ($scope) {
-    $scope.message = "Hello World!";
-  });
-</script>
+<p>projeto equações de langevin</p>
+<label>velocidade<input  id="vel"><button onclick="make()">mudar</button></label>
 </body>
+
 </html>
