@@ -8,15 +8,15 @@ let lua;
 
 terra = {
   name:'terra',
-  m:1001,
+  m:10001,
   raio:8,
-  pos:{x:200,y:200},
+  pos:{x:200,y:20},
   vectorVel:{x:0,y:0}
 }
 
 lua = {
   name:'lua',
-  m:10,
+  m:100,
   raio:2,
   pos:{x:150,y:200},
   vectorVel:{x:0,y:0}
@@ -42,7 +42,7 @@ function setup(){
   universe = new Universe();
   universe.makeAstro([terra,sol,lua]);
   //walker = new Walker(random(0,x),random(0,y))
-  createCanvas(2*innerWidth,2*innerHeight)
+  createCanvas(innerWidth,innerHeight)
   background(0)
 }
 

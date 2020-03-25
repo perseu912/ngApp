@@ -40,9 +40,9 @@ class Universe{
     }
     //this.force[this.nAstro] = dataAtro.g;
   }
-  forceGravity(m,M=1,d){
+  forceGravity(m,d){
     let force;
-    force = (m*M*this.G)/d**2;
+    force = (m*this.G)/d**2;
     return force;
   }
   iterations(){
@@ -52,8 +52,10 @@ class Universe{
     let posY;
     let dx;
     let dy;
-    let forceX;
-    let forceY;
+    let forceXM;
+    let forceYM;
+    let forceYm;
+    let forceXm
     let gY;
     let gX;
     let velY;
@@ -77,25 +79,28 @@ class Universe{
         M = this.dataAstros[c].m;
         
         dx = posX - this.dataAstros[c].pos.x;
-        dx = (dx==0)? 1 : dx;
+        dx = (dx==0)? 0.000001 : dx;
         
         dy = posY - this.dataAstros[c].pos.y;
-        dy = (dy==0)? 1 : dy;
+        dy = (dy==0)? 0.000001 : dy;
         
-        forceY = this.forceGravity(m, M, dy)
-        forceX = this.forceGravity(m, M, dx)
+        forceYM = this.forceGravity(M, dy)
+        forceXM = this.forceGravity(M, dx)
         
-        gX = forceX / m;
-        gY = forceY / m;
       }
+      forceXm = this.forceGravity(m,dx)
+      forceYm = this.forceGravity(m,dy)
+      
+      gX = forceXm - forceXM
+      gY = forceYm - forceYM
       
       velX = this.dataAstros[i].vectorVel.x;
       velY = this.dataAstros[i].vectorVel.y;
       
       
 
-      posX -= velX - gX;
-      posY -= velX - gY;
+      posX += velX + gX;
+      posY += velX + gY;
       
       posX = (posX >= innerWidth) ? innerWidth - 10 : posX;
       posY = (posY >= innerHeight) ? innerHeight - 10 : posY;
@@ -104,9 +109,9 @@ class Universe{
       this.dataAstros[i].pos.y = posY;
       
       g = hipotenusa([gX,gY]);
-      force = hipotenusa([forceX,forceY]);
+     // force = hipotenusa([g,forceY]);
       
-      print(`${name}: force:${force}`)
+      print(`${name}: force:${g}`)
       
      this.dataAstros[1].pos.x = 300
      this.dataAstros[1].pos.y = 300
